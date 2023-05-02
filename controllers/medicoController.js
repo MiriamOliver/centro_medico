@@ -30,7 +30,18 @@ const conx = require('../controllers/conexion/medicoConexion')
         }
     }
 
+    const borrarMedico = async(req = request, res = response) => {
+        try{
+            await conx.deleteMedico(req.params.dni);
+            res.status(200).json({msg:'medico borrado con éxito'});
+        }catch(err){
+            console.log(err);
+            res.status(203).json(err);
+        }
+    }
+
  module.exports = {
     createMedico,
-    listarMedicos
+    listarMedicos,
+    borrarMedico
  }

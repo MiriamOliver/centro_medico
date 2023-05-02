@@ -23,7 +23,18 @@ const  medicos = require('../../models/medico');
         return result;
     }
 
+    const deleteMedico = async(dni) => {
+        
+        result = '';
+
+        result = await medicos.deleteOne({dni:dni});
+        console.log(result);
+
+        return result;
+    }
+
 module.exports = {
     registrarMedico,
-    listaMedicos
+    listaMedicos,
+    deleteMedico
 };
