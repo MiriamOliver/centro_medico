@@ -24,6 +24,8 @@ router.post('/registro',
  ]
 ,controlador.createPaciente);
 
-router.get('/listado', controlador.listadoPacientes)
+router.get('/listado', controlador.listadoPacientes);
+
+router.delete('/borrar/:dni', controlador.borrarPaciente);
 
 module.exports = router;

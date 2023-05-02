@@ -30,7 +30,18 @@ const listadoPacientes = async(req = request, res = response) => {
     }
 }
 
+const borrarPaciente = async(req = request, res = response) => {
+    try{
+        await conx.deletePaciente(req.params.dni);
+        res.status(200).json({msg:'paciente borrado con éxito'});
+    }catch(err){
+        console.log(err);
+        res.status(203).json(err);
+    }
+}
+
  module.exports = {
     createPaciente,
-    listadoPacientes
+    listadoPacientes,
+    borrarPaciente
  }
