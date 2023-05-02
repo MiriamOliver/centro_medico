@@ -1,15 +1,29 @@
 const mongoose = require("mongoose");
-const medicos = require('../models/medicoMongoose.js');
+const  medicos = require('../../models/medico');
 
-class ConexionMedico {
-
-    constructor(options) {
-        mongoose.connect("mongodb://" + process.env.DB_URL + ":" + process.env.DB_PORT + "/" + process.env.DB_DATABASE);
-    }  
     
-    registrarMedico = async(dni, nombre, email, edad, telf, especialidad) => {
+    const registrarMedico = async(medico) => {
 
+        console.log(medicos);
+        
+        result = '';
+
+        result = await medicos.create(medico);
+
+        return result;
     }
-}
 
-module.exports = ConexionMedico;
+    const listaMedicos = async() => {
+        
+        result = '';
+
+        result = await medicos.find();
+        console.log(result);
+
+        return result;
+    }
+
+module.exports = {
+    registrarMedico,
+    listaMedicos
+};

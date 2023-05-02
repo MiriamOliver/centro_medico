@@ -1,11 +1,26 @@
 const mongoose = require("mongoose");
-const usuarios = require('../models/pacienteMongoose.js');
+const pacientes = require('../../models/paciente');
 
-class Conexion {
+const registrarPaciente = async(paciente) => {
+    
+    result = '';
 
-    constructor(options) {
-        mongoose.connect("mongodb://" + process.env.DB_URL + ":" + process.env.DB_PORT + "/" + process.env.DB_DATABASE);
-    }    
+    result = await pacientes.create(paciente);
+
+    return result;
 }
 
-module.exports = Conexion;
+const listaPaciente = async() => {
+    
+    result = '';
+
+    result = await pacientes.find();
+
+    return result;
+}
+
+module.exports = {
+    registrarPaciente,
+    listaPaciente
+};
+

@@ -1,27 +1,36 @@
 const {response,request} = require('express');
-const ConexionMedico = require('../controllers/conexion/medicoConexion');
-const medicos = require('../models/medicoMongoose');
-const conx = new ConexionMedico();
+const conx = require('../controllers/conexion/medicoConexion')
 
 
-const createMedico =  (req = request, res = response) => {
-    medicos.insertMany({
-         id: req.body.id,
-         nombre: req.body.nombre,
-         edad : req.body.edad,
-         email: req.body.email,
-         telf: req.body.telf
-    }, (err, medicos) => {
-         if (err) {
-             console.log('Error en el registro!');
-             res.status(203).json(err);
-             throw err;
-         }
-         console.log('Registro correcto!');
-         res.status(201).json(medicos);
-     });
- }
+    const createMedico = async(req = request, res = response) => {
+
+        try{
+            const medicos = await conx.registrarMedico({
+                dni: req.body.dni,
+                nombre: req.body.nombre,
+                edad : req.body.edad,
+                email: req.body.email,
+                telf: req.body.telf,
+                especialidad: req.body.especialidad
+           });
+           res.status(201).json(medicos);
+        }catch(err){
+            console.log(err);
+            res.status(203).json(err);
+        }
+    }
+
+    const listarMedicos = async(req = request, res = response) => {
+        try{
+            const medicos = await conx.listaMedicos();
+            res.status(200).json(medicos);
+        }catch(err){
+            console.log(err);
+            res.status(203).json(err);
+        }
+    }
 
  module.exports = {
     createMedico,
+    listarMedicos
  }
