@@ -28,4 +28,6 @@ router.get('/listado', controlador.listarMedicos);
 
 router.delete('/borrar/:dni', controlador.borrarMedico);
 
+router.put('/modificar/:dni', controlador.modificarMedico);
+
 module.exports = router;

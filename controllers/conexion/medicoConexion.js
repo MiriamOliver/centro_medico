@@ -18,7 +18,6 @@ const  medicos = require('../../models/medico');
         result = '';
 
         result = await medicos.find();
-        console.log(result);
 
         return result;
     }
@@ -28,7 +27,15 @@ const  medicos = require('../../models/medico');
         result = '';
 
         result = await medicos.deleteOne({dni:dni});
-        console.log(result);
+
+        return result;
+    }
+
+    const updateMedico = async(dni, medico) => {
+        
+        result = '';
+
+        result = await medicos.updateOne({dni:dni}, medico);
 
         return result;
     }
@@ -36,5 +43,6 @@ const  medicos = require('../../models/medico');
 module.exports = {
     registrarMedico,
     listaMedicos,
-    deleteMedico
+    deleteMedico,
+    updateMedico
 };
