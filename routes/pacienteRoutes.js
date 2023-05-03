@@ -26,6 +26,8 @@ router.post('/registro',
 
 router.get('/listado', controlador.listadoPacientes);
 
+router.get('/listar/:dni', controlador.conseguirPaciente);
+
 router.delete('/borrar/:dni', controlador.borrarPaciente);
 
 router.put('/modificar/:dni', controlador.modificarPaciente);

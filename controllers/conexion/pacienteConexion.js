@@ -19,6 +19,15 @@ const listaPaciente = async() => {
     return result;
 }
 
+const getPaciente = async(dni) => {
+        
+    result = '';
+
+    result = await pacientes.find({dni:dni});
+
+    return result;
+}
+
 const deletePaciente = async(dni) => {
         
     result = '';
@@ -41,6 +50,7 @@ const updatePaciente = async(dni, paciente) => {
 module.exports = {
     registrarPaciente,
     listaPaciente,
+    getPaciente,
     deletePaciente,
     updatePaciente
 };

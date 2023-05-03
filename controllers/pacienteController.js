@@ -30,6 +30,16 @@ const listadoPacientes = async(req = request, res = response) => {
     }
 }
 
+const conseguirPaciente = async(req = request, res = response) => {
+    try{
+        const paciente = await conx.getPaciente(req.params.dni);
+        res.status(200).json(paciente);
+    }catch(err){
+        console.log(err);
+        res.status(203).json(err);
+    }
+}
+
 const borrarPaciente = async(req = request, res = response) => {
     try{
         await conx.deletePaciente(req.params.dni);
@@ -60,6 +70,7 @@ const modificarPaciente = async(req = request, res = response) => {
  module.exports = {
     createPaciente,
     listadoPacientes,
+    conseguirPaciente,
     borrarPaciente,
     modificarPaciente
  }
