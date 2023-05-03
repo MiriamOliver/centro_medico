@@ -40,8 +40,26 @@ const conx = require('../controllers/conexion/medicoConexion')
         }
     }
 
+    const modificarMedico = async(req = request, res = response) => {
+        try{
+            const medico = await conx.updateMedico(req.params.dni, {
+                dni: req.body.dni,
+                nombre: req.body.nombre,
+                edad : req.body.edad,
+                email: req.body.email,
+                telf: req.body.telf,
+                especialidad: req.body.especialidad
+            });
+            res.status(200).json(medico);
+        }catch(err){
+            console.log(err);
+            res.status(203).json(err);
+        }
+    }
+
  module.exports = {
     createMedico,
     listarMedicos,
-    borrarMedico
+    borrarMedico,
+    modificarMedico
  }
