@@ -28,11 +28,20 @@ const deletePaciente = async(dni) => {
     return result;
 }
 
+const updatePaciente = async(dni, paciente) => {
+        
+    result = '';
+
+    result = await pacientes.updateOne({dni:dni}, paciente);
+
+    return result;
+}
 
 
 module.exports = {
     registrarPaciente,
     listaPaciente,
-    deletePaciente
+    deletePaciente,
+    updatePaciente
 };
 
