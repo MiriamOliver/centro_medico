@@ -26,6 +26,8 @@ controlador.createMedico);
 
 router.get('/listado', controlador.listarMedicos);
 
+router.get('/listar/:dni', controlador.conseguirMedico);
+
 router.delete('/borrar/:dni', controlador.borrarMedico);
 
 router.put('/modificar/:dni', controlador.modificarMedico);

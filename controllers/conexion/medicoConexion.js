@@ -22,6 +22,15 @@ const  medicos = require('../../models/medico');
         return result;
     }
 
+    const getMedico = async(dni) => {
+        
+        result = '';
+
+        result = await medicos.find({dni:dni});
+
+        return result;
+    }
+
     const deleteMedico = async(dni) => {
         
         result = '';
@@ -43,6 +52,7 @@ const  medicos = require('../../models/medico');
 module.exports = {
     registrarMedico,
     listaMedicos,
+    getMedico,
     deleteMedico,
     updateMedico
 };
