@@ -32,7 +32,7 @@ const medicoSchema = new mongoose.Schema({
         require: true,
         enum : ['Medicina general','Rodillología','Ojología','Golpenloslomoslogia','Tontología','Gargantología']
     },
-}, { collection: 'centro_medico.medicos' });
+}, { collection: 'medicos' });
 
 
 const Medico = mongoose.model('medicos', medicoSchema);

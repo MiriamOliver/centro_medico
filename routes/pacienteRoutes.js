@@ -32,4 +32,13 @@ router.delete('/borrar/:dni', controlador.borrarPaciente);
 
 router.put('/modificar/:dni', controlador.modificarPaciente);
 
+/* router.post('/cita/pedir/:dni', controlador.createCita);
+
+router.get('cita/ver/:dni', controlador.verCitas);
+
+router.get('/cita/ver/:id/:dni', controlador.verCita);
+
+router.delete('/cita/cancelar/:id/:dni', controlador.cancelarCita); */
+
+
 module.exports = router;

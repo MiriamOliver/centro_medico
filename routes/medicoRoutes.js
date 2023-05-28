@@ -24,12 +24,20 @@ router.post('/registro',
  ],
 controlador.createMedico);
 
-router.get('/listado', controlador.listarMedicos);
+router.get('/listado', controlador.listarMedicos); //listarMedicos
 
-router.get('/listar/:dni', controlador.conseguirMedico);
+router.get('/listar/:dni', controlador.conseguirMedico); // conseguir datos de un medico por su dni
 
-router.delete('/borrar/:dni', controlador.borrarMedico);
+router.delete('/borrar/:dni', controlador.borrarMedico); // borrar un medico
 
-router.put('/modificar/:dni', controlador.modificarMedico);
+router.put('/modificar/:dni', controlador.modificarMedico); // modificar datos de un medico por su dni
 
+router.post('/generar', controlador.generarMedicos); // generar medicos (3 de cada especialidad)
+
+/* router.get('consulta/pacientes/:id/:dni', controlador.listarPacienteMedico);
+
+router.get('consulta/pacientes/:dni', controlador.listadoPacientesMedico);
+
+router.get('consulta/:dia/:turno/:dni', controlador.listadoDiarioMedico);
+ */
 module.exports = router;

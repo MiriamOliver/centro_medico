@@ -32,7 +32,7 @@ const pacienteSchema = new mongoose.Schema({
         unique:true,
         require: true
     },
-}, { collection: 'centro_medico.pacientes' });
+}, { collection: 'pacientes' });
 
 
 const Paciente = mongoose.model('pacientes', pacienteSchema);
