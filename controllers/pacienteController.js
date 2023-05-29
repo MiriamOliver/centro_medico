@@ -95,5 +95,4 @@ const generarPacientes = async(req = request, res = response) => {
     borrarPaciente,
     modificarPaciente,
     generarPacientes,
-    //crearCita
  }
