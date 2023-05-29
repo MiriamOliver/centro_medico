@@ -38,7 +38,8 @@ router.post('/generar/:cant', controlador.generarPacientes); // generar paciente
 
 router.get('/cita/ver/:id/:dni', controlador.verCita);
 
-router.delete('/cita/cancelar/:dni', controlador.cancelarCita); */ //cancelar cita, especificando el dni 
+*/
+
 
 
 module.exports = router;

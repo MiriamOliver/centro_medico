@@ -73,9 +73,25 @@ const crearCita = async(req = request, res = response) => {
     }
 }
 
+const cancelarCita = async(req = request, res = response) => {
+
+    try{
+        const cita = await conx.eliminarCita(req.params.dni, {
+            dniMedico: req.body.dniMedico,
+            dia: req.body.dia,
+            turno : req.body.turno,
+       });
+       res.status(201).json(cita);
+    }catch(err){
+        console.log(err);
+        res.status(203).json(err);
+    }
+}
+
 
 module.exports = {
     generarHorario,
     mostrarHorario,
-    crearCita
+    crearCita,
+    cancelarCita
 }

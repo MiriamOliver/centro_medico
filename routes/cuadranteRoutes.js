@@ -22,5 +22,15 @@ router.put('/cita/pedir/:dni',
 ], controlador.crearCita);  // crear cita, especificando el dni del paciente que pide la cita en la ruta
                              // y dando de datos el dia, el turno y el dni del medico que necesitas
 
+router.put('/cita/cancelar/:dni', 
+[
+    check('dniMedico').custom( dniRegistrado ),
+    check('dniMedico', 'El DNI es obligatorio').not().isEmpty(),
+    check('dia', 'El dia es obligatorio').not().isEmpty(),
+    check('dia', 'No es un dia válido').isIn(['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']),
+    check('turno', 'El turno es obligatorio').not().isEmpty(),
+    check('turno', 'No es un turno válido').isIn(['Mañana','Tarde']),
+    validarCampos
+], controlador.cancelarCita); //cancelar cita, especificando el dni 
 
 module.exports = router;
