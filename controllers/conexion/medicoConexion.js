@@ -13,8 +13,6 @@ const  medicos = require('../../models/medico');
 
     const registrarMedicos = async(listamedicos) => {
 
-        console.log(listamedicos);
-
         let result = await medicos.insertMany(listamedicos);
 
         return result;

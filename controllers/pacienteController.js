@@ -1,5 +1,6 @@
 const {response,request} = require('express');
 const conx = require('../controllers/conexion/pacienteConexion')
+const factoria = require('../helpers/factorias');
 
 
 const createPaciente =  async(req = request, res = response) => {
@@ -67,10 +68,32 @@ const modificarPaciente = async(req = request, res = response) => {
     }
 }
 
+const generarPacientes = async(req = request, res = response) => {
+
+    const cont = req.params.cant
+    const pacientes = [];
+
+    for (let i = 0; i < cont; i++) {
+        pacientes.push(factoria.factoriaPaciente());
+    }
+
+    try {
+
+        const resp = await conx.registrarPacientes(pacientes);
+
+        res.status(200).json(resp);
+
+    } catch (err) {
+        res.status(200).json({ 'msg': 'Error en generar pacientes', 'err': err });
+    }
+}
+
  module.exports = {
     createPaciente,
     listadoPacientes,
     conseguirPaciente,
     borrarPaciente,
-    modificarPaciente
+    modificarPaciente,
+    generarPacientes,
+    //crearCita
  }

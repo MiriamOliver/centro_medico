@@ -10,6 +10,13 @@ const registrarPaciente = async(paciente) => {
     return result;
 }
 
+const registrarPacientes = async(listapacientes) => {
+
+    let result = await pacientes.insertMany(listapacientes);
+
+    return result;
+}
+
 const listaPaciente = async() => {
     
     result = '';
@@ -52,6 +59,7 @@ module.exports = {
     listaPaciente,
     getPaciente,
     deletePaciente,
-    updatePaciente
+    updatePaciente,
+    registrarPacientes
 };
 

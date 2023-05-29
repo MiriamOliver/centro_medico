@@ -83,7 +83,7 @@ const factoria = require('../helpers/factorias');
         try {
             const resp = await conx.registrarMedicos(medicos);
 
-            res.status(200).json(medicos);
+            res.status(200).json(resp);
 
         } catch (err) {
             res.status(200).json({ 'msg': 'Error en generar medicos', 'err': err });
