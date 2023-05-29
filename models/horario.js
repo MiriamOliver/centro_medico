@@ -17,7 +17,7 @@ const horarioSchema = new mongoose.Schema({
     turno: { 
         type: String,
         require: true,
-        enum : ['mañana','tarde']
+        enum : ['Mañana','Tarde']
     },
     consulta:{
         type: [{

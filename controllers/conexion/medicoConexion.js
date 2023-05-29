@@ -3,12 +3,19 @@ const  medicos = require('../../models/medico');
 
     
     const registrarMedico = async(medico) => {
-
-        console.log(medicos);
         
         result = '';
 
         result = await medicos.create(medico);
+
+        return result;
+    }
+
+    const registrarMedicos = async(listamedicos) => {
+
+        console.log(listamedicos);
+
+        let result = await medicos.insertMany(listamedicos);
 
         return result;
     }
@@ -54,5 +61,6 @@ module.exports = {
     listaMedicos,
     getMedico,
     deleteMedico,
-    updateMedico
+    updateMedico,
+    registrarMedicos
 };

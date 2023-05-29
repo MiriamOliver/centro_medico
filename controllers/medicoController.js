@@ -86,7 +86,7 @@ const factoria = require('../helpers/factorias');
             res.status(200).json(medicos);
 
         } catch (err) {
-            res.status(200).json({ 'msg': 'Error en generar medicos' });
+            res.status(200).json({ 'msg': 'Error en generar medicos', 'err': err });
         }
     }
 

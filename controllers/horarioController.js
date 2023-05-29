@@ -1,13 +1,13 @@
 const {response,request} = require('express');
+const { uuid } = require('uuidv4');
 const conx = require('../controllers/conexion/horarioConexion');
 const conexionMedicos = require('./conexion/medicoConexion');
 
 
 const generarHorario = async (req = request, res = response) => {
     const listaMedicos = await conexionMedicos.listaMedicos();
-    const cont = 0;
-    const dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes','sabado','domingo'];
-    const turnos = ['mañana', 'tarde'];
+    const dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+    const turnos = ['Mañana','Tarde'];
     const especialidades = ['Medicina general', 'Rodillología', 'Ojología', 'Golpenloslomoslogía', 'Tontología', 'Gargantología'];
     const horario = [];
 
@@ -16,28 +16,28 @@ const generarHorario = async (req = request, res = response) => {
             turnos.forEach(turno => {
                 let consulta = [];
                 especialidades.forEach(especialidad => {
-                    let medico = listaMedicos.find(medico => medico.especialidad == especialidad); 
-                    consulta.push({dniMedico : medico.dni});               
+                    let medico = listaMedicos.find(medico => medico.especialidad == especialidad);
+                    let dniMedico = medico.dni;
+                    consulta.push({dniMedico : dniMedico});               
                 })
 
-                cont = cont + 1
-
                 horario.push({
-                    id : cont,
-                    dia: dia,
+                    id : uuid(),
+                    dia : dia,
                     turno : turno,
                     consulta : consulta
                 })
+
             });
         });
 
-        const cuadrante = conx.crearHorario(horario);
+        const cuadrante = await conx.crearHorario(horario);
 
         res.status(200).json(cuadrante);
 
     } catch (err) {
 
-        res.status(202).json({ 'msg': 'Error generar horario' });
+        res.status(202).json({ 'msg': 'Error generar horario', 'err' : err });
     }
 
 }

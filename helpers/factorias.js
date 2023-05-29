@@ -2,16 +2,19 @@ const { faker } = require('@faker-js/faker');
 
 const factoriaMedico = (especialidad) => {
 
-    let user = {
+    const letra = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+    const numero = Math.floor(10000000 + Math.random() * 90000000);
+    const dniLetra = letra[numero % 23];
+
+    return {
+        dni : numero.toString() + dniLetra,
         nombre : faker.internet.userName(),
         email : faker.internet.email(),
-        password : 1234,
-        avatar : '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg',
-        verificado : datos.verificado,
-        especialidad : datos.rol,
+        edad : Math.floor(20 + Math.random() * 50),
+        telf : Math.floor(100000000 + Math.random() * 900000000),
+        especialidad : especialidad
     }
 
-    return user;
 }
 
 module.exports = {

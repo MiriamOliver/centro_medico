@@ -5,7 +5,7 @@ const registrarPaciente = async(paciente) => {
     
     result = '';
 
-    result = await pacientes.create(paciente);
+    result = await pacientes.insertMany(paciente);
 
     return result;
 }
