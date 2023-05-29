@@ -5,7 +5,14 @@ const registrarPaciente = async(paciente) => {
     
     result = '';
 
-    result = await pacientes.create(paciente);
+    result = await pacientes.insertMany(paciente);
+
+    return result;
+}
+
+const registrarPacientes = async(listapacientes) => {
+
+    let result = await pacientes.insertMany(listapacientes);
 
     return result;
 }
@@ -52,6 +59,7 @@ module.exports = {
     listaPaciente,
     getPaciente,
     deletePaciente,
-    updatePaciente
+    updatePaciente,
+    registrarPacientes
 };
 

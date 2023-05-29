@@ -8,6 +8,7 @@ class Server {
         this.app = express();
         this.medicoPath = '/medicos';
         this.pacientePath = '/pacientes';
+        this.horarioPath = '/horarios';
 
         //DataBase
         this.conectarDB();
@@ -32,6 +33,7 @@ class Server {
     routes(){
         this.app.use(this.medicoPath , require('../routes/medicoRoutes'));
         this.app.use(this.pacientePath , require('../routes/pacienteRoutes'));
+        this.app.use(this.horarioPath , require('../routes/cuadranteRoutes'));
     }
 
     listen() {

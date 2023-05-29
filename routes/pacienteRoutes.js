@@ -24,12 +24,32 @@ router.post('/registro',
  ]
 ,controlador.createPaciente);
 
-router.get('/listado', controlador.listadoPacientes);
+router.get('/listado', controlador.listadoPacientes); //listado de todos los pacientes
 
-router.get('/listar/:dni', controlador.conseguirPaciente);
+router.get('/listar/:dni', controlador.conseguirPaciente); //mostrar datos de un paciente por su dni
 
-router.delete('/borrar/:dni', controlador.borrarPaciente);
+router.delete('/borrar/:dni', controlador.borrarPaciente); //borrar datos de un paciente por su dni
 
-router.put('/modificar/:dni', controlador.modificarPaciente);
+router.put('/modificar/:dni', controlador.modificarPaciente); //modificar datos de un paciente por su dni
+
+router.post('/generar/:cant', controlador.generarPacientes); // generar pacientes, especificando la cantidad
+
+/* router.put('/cita/pedir/:dni', 
+[
+    check('dni').custom( dniRegistrado ),
+    check('dni', 'El DNI es obligatorio').not().isEmpty(),
+    check('dia', 'El dia es obligatorio').not().isEmpty(),
+    check('dia', 'No es un dia válido').isIn(['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']),
+    check('turno', 'El turno es obligatorio').not().isEmpty(),
+    check('dia', 'No es un turno válido').isIn(['Mañana','Tarde']),
+], controlador.crearCita);  // crear cita, especificando el dni del paciente que pide la cita en la ruta
+                             // y dando de datos el dia, el turno y el dni del medico que necesitas */
+
+/* router.get('cita/ver/:dni', controlador.verCitas);  //mostrar cita de un paciente
+
+router.get('/cita/ver/:id/:dni', controlador.verCita);
+
+router.delete('/cita/cancelar/:dni', controlador.cancelarCita); */ //cancelar cita, especificando el dni 
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const {response,request} = require('express');
 const conx = require('../controllers/conexion/medicoConexion')
+const factoria = require('../helpers/factorias');
 
 
     const createMedico = async(req = request, res = response) => {
@@ -67,10 +68,33 @@ const conx = require('../controllers/conexion/medicoConexion')
         }
     }
 
+    const generarMedicos = async(req = request, res = response) => {
+
+        const especialidades = ['Medicina general', 'Rodillología', 'Ojología', 'Golpenloslomoslogía', 'Tontología', 'Gargantología'];
+        const medicos = [];
+    
+
+        especialidades.forEach(especialidad => {
+            for (let i = 0; i < 3; i++) {
+                medicos.push(factoria.factoriaMedico(especialidad));
+            }
+        })
+    
+        try {
+            const resp = await conx.registrarMedicos(medicos);
+
+            res.status(200).json(resp);
+
+        } catch (err) {
+            res.status(200).json({ 'msg': 'Error en generar medicos', 'err': err });
+        }
+    }
+
  module.exports = {
     createMedico,
     listarMedicos,
     conseguirMedico,
     borrarMedico,
-    modificarMedico
+    modificarMedico,
+    generarMedicos
  }
