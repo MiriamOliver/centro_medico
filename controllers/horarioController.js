@@ -98,7 +98,23 @@ const verCitasPaciente = async (req = request, res = response) => {
     
     } catch (err) {
 
-        res.status(202).json({ 'msg': 'Error al mostrar el horario' });
+        res.status(202).json({ 'msg': 'No hay registro' });
+
+    }
+
+}
+
+const verCitasPacienteDia = async (req = request, res = response) => {
+
+    try {
+
+        const citasPaciente = await conx.conseguirCitasPacienteDia(req.params.dia, req.params.dni);
+
+        res.status(200).json(citasPaciente);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'No hay registro' });
 
     }
 
@@ -110,5 +126,6 @@ module.exports = {
     mostrarHorario,
     crearCita,
     cancelarCita,
-    verCitasPaciente
+    verCitasPaciente,
+    verCitasPacienteDia
 }

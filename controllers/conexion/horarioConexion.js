@@ -104,10 +104,36 @@ const conseguirCitasPaciente = async(dni) => {
     return citasPaciente;  
 }
 
+const conseguirCitasPacienteDia = async(dia, dni) => {
+
+    let citasPaciente = [];
+
+    let registro = await horario.find({
+        dia: dia,
+        consulta: {$elemMatch: { dniPacientes: dni }}
+    });
+
+    registro.forEach(cite => {
+        cite.consulta.forEach(c =>{
+            c.dniPacientes.forEach(p => {
+                if(p == dni){
+                    citasPaciente.push({  dia: cite.dia,
+                                          turno: cite.turno,
+                                          dniMedico: c.dniMedico
+                                        });
+                }
+            })
+        })
+    })
+
+    return citasPaciente;  
+}
+
 module.exports = {
     crearHorario,
     conseguirHorario,
     registrarCita,
     eliminarCita,
-    conseguirCitasPaciente
+    conseguirCitasPaciente,
+    conseguirCitasPacienteDia
 }
