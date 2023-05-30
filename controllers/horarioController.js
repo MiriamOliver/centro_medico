@@ -88,10 +88,27 @@ const cancelarCita = async(req = request, res = response) => {
     }
 }
 
+const verCitasPaciente = async (req = request, res = response) => {
+
+    try {
+
+        const citasPaciente = await conx.conseguirCitasPaciente(req.params.dni);
+
+        res.status(200).json(citasPaciente);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'Error al mostrar el horario' });
+
+    }
+
+}
+
 
 module.exports = {
     generarHorario,
     mostrarHorario,
     crearCita,
-    cancelarCita
+    cancelarCita,
+    verCitasPaciente
 }

@@ -31,6 +31,10 @@ router.put('/cita/cancelar/:dni',
     check('turno', 'El turno es obligatorio').not().isEmpty(),
     check('turno', 'No es un turno válido').isIn(['Mañana','Tarde']),
     validarCampos
-], controlador.cancelarCita); //cancelar cita, especificando el dni 
+], controlador.cancelarCita); //cancelar cita, especificando el dni del paciente que pide la cita en la ruta
+                              // y dando de datos el dia, el turno y el dni del medico que necesitas
+
+router.get('/citas/paciente/:dni', controlador.verCitasPaciente);  //mostrar citas de un paciente por su dni
+
 
 module.exports = router;

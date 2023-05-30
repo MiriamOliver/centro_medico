@@ -34,12 +34,5 @@ router.put('/modificar/:dni', controlador.modificarPaciente); //modificar datos 
 
 router.post('/generar/:cant', controlador.generarPacientes); // generar pacientes, especificando la cantidad
 
-/* router.get('cita/ver/:dni', controlador.verCitas);  //mostrar cita de un paciente
-
-router.get('/cita/ver/:id/:dni', controlador.verCita);
-
-*/
-
-
 
 module.exports = router;

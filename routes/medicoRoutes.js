@@ -34,10 +34,8 @@ router.put('/modificar/:dni', controlador.modificarMedico); // modificar datos d
 
 router.post('/generar', controlador.generarMedicos); // generar medicos (3 de cada especialidad)
 
-/* router.get('consulta/pacientes/:id/:dni', controlador.listarPacienteMedico);
 
-router.get('consulta/pacientes/:dni', controlador.listadoPacientesMedico);
 
-router.get('consulta/:dia/:turno/:dni', controlador.listadoDiarioMedico);
- */
+/* //router.get('citas/:dni', controlador.citasPaciente);  // mostrar todas las citas de un paciente por su dni */
+
 module.exports = router;
