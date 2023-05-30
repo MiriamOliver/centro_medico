@@ -120,6 +120,22 @@ const verCitasPacienteDia = async (req = request, res = response) => {
 
 }
 
+const verCitasMedicoDiaTurno = async (req = request, res = response) => {
+
+    try {
+
+        const citasMedico = await conx.conseguirCitasMedicoDiaTurno(req.params.dia, req.params.turno, req.params.dni);
+
+        res.status(200).json(citasMedico);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'No hay registro' });
+
+    }
+
+}
+
 
 module.exports = {
     generarHorario,
@@ -127,5 +143,6 @@ module.exports = {
     crearCita,
     cancelarCita,
     verCitasPaciente,
-    verCitasPacienteDia
+    verCitasPacienteDia,
+    verCitasMedicoDiaTurno
 }

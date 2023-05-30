@@ -36,6 +36,8 @@ router.put('/cita/cancelar/:dni',
 
 router.get('/citas/paciente/:dni', controlador.verCitasPaciente);  //mostrar citas de un paciente por su dni
 
-router.get('/citas/paciente/:dia/:dni', controlador.verCitasPacienteDia);  //mostrar citas de un paciente por su dni en un dia
+router.get('/citas/paciente/:dia/:dni', controlador.verCitasPacienteDia);  //mostrar citas de un paciente por su dni en un día.
+
+router.get('/citas/medico/:dia/:turno/:dni', controlador.verCitasMedicoDiaTurno); //mostrar las citas (pacientes) que tiene asignado un médico para cada turno y día.
 
 module.exports = router;
