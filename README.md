@@ -51,7 +51,7 @@ Crear citas
     ../horarios/cita/pedir/:dni     ->     en el dni se pone el dni del paciente
 
 
-### 2 - Paso
+### 3 - Paso
 
 Rutas horario
 
@@ -71,6 +71,6 @@ Rutas medicos
 Rutas pacientes
 
     ../pacientes/listado
-    ../pacientes/listar/:dni                      ->     en el dni se pone el dni del medico
+    ../pacientes/listar/:dni                      ->     en el dni se pone el dni del paciente
     ../pacientes/borrar/:dni
     ../pacientes/modificar/:dni
