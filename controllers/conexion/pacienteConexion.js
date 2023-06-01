@@ -53,7 +53,6 @@ const updatePaciente = async(dni, paciente) => {
     return result;
 }
 
-
 module.exports = {
     registrarPaciente,
     listaPaciente,

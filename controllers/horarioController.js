@@ -58,8 +58,91 @@ const mostrarHorario = async (req = request, res = response) => {
 
 }
 
+const crearCita = async(req = request, res = response) => {
+
+    try{
+        const cita = await conx.registrarCita(req.params.dni, {
+            dniMedico: req.body.dniMedico,
+            dia: req.body.dia,
+            turno : req.body.turno,
+       });
+       res.status(201).json(cita);
+    }catch(err){
+        console.log(err);
+        res.status(203).json(err);
+    }
+}
+
+const cancelarCita = async(req = request, res = response) => {
+
+    try{
+        const cita = await conx.eliminarCita(req.params.dni, {
+            dniMedico: req.body.dniMedico,
+            dia: req.body.dia,
+            turno : req.body.turno,
+       });
+       res.status(201).json(cita);
+    }catch(err){
+        console.log(err);
+        res.status(203).json(err);
+    }
+}
+
+const verCitasPaciente = async (req = request, res = response) => {
+
+    try {
+
+        const citasPaciente = await conx.conseguirCitasPaciente(req.params.dni);
+
+        res.status(200).json(citasPaciente);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'No hay registro' });
+
+    }
+
+}
+
+const verCitasPacienteDia = async (req = request, res = response) => {
+
+    try {
+
+        const citasPaciente = await conx.conseguirCitasPacienteDia(req.params.dia, req.params.dni);
+
+        res.status(200).json(citasPaciente);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'No hay registro' });
+
+    }
+
+}
+
+const verCitasMedicoDiaTurno = async (req = request, res = response) => {
+
+    try {
+
+        const citasMedico = await conx.conseguirCitasMedicoDiaTurno(req.params.dia, req.params.turno, req.params.dni);
+
+        res.status(200).json(citasMedico);
+    
+    } catch (err) {
+
+        res.status(202).json({ 'msg': 'No hay registro' });
+
+    }
+
+}
+
 
 module.exports = {
     generarHorario,
-    mostrarHorario
+    mostrarHorario,
+    crearCita,
+    cancelarCita,
+    verCitasPaciente,
+    verCitasPacienteDia,
+    verCitasMedicoDiaTurno
 }

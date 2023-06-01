@@ -30,14 +30,24 @@ router.get('/listar/:dni', controlador.conseguirMedico); // conseguir datos de u
 
 router.delete('/borrar/:dni', controlador.borrarMedico); // borrar un medico
 
-router.put('/modificar/:dni', controlador.modificarMedico); // modificar datos de un medico por su dni
+router.put('/modificar/:dni',
+[
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('email', 'El correo no es válido').isEmail(),
+    check('email', 'El email es obligatorio').not().isEmpty(),
+    check('email').custom( emailMedicoExiste ),
+    check('edad','El campo edad no es correcto').isInt(),
+    check('edad', 'La edad es obligatoria').not().isEmpty(),
+    check('edad').custom(edadCorrecta),
+    check('telf', 'El teléfono debe ser numérico').isInt(),
+    check('telf', 'El teléfono es obligatorio').not().isEmpty(),
+    check('especialidad', 'No es una especialidad válida').isIn(['Medicina general','Rodillología','Ojología','Golpenloslomoslogia','Tontología','Gargantología']),
+    check('especialidad', 'La especialidad es obligatoria').not().isEmpty(),
+    validarCampos
+ ], 
+controlador.modificarMedico); // modificar datos de un medico por su dni
 
 router.post('/generar', controlador.generarMedicos); // generar medicos (3 de cada especialidad)
 
-/* router.get('consulta/pacientes/:id/:dni', controlador.listarPacienteMedico);
 
-router.get('consulta/pacientes/:dni', controlador.listadoPacientesMedico);
-
-router.get('consulta/:dia/:turno/:dni', controlador.listadoDiarioMedico);
- */
 module.exports = router;

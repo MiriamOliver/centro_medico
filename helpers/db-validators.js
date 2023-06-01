@@ -40,10 +40,20 @@ const edadCorrecta = async(edad)=>{
     }
 }
 
+const dniRegistrado = async( dni ) => {
+
+    const existeUsuario = await medico.findOne({"dni": dni});
+
+    if (! existeUsuario ) {
+        throw new Error(`El id ${ id } no existe `);
+    }
+}
+
 module.exports = {
     emailMedicoExiste,
     existeMedicoDni,
     emailPacienteExiste,
     existePacienteDni,
-    edadCorrecta
+    edadCorrecta,
+    dniRegistrado
 }

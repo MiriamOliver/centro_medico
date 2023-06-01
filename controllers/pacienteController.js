@@ -88,6 +88,8 @@ const generarPacientes = async(req = request, res = response) => {
     }
 }
 
+
+
  module.exports = {
     createPaciente,
     listadoPacientes,
@@ -95,5 +97,4 @@ const generarPacientes = async(req = request, res = response) => {
     borrarPaciente,
     modificarPaciente,
     generarPacientes,
-    //crearCita
  }
